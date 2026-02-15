@@ -1,0 +1,103 @@
+{
+  "name": "LLMFramework",
+  "projectId": "015f6210-50fa-4435-9199-96ac68abe9cd",
+  "description": "Quickly build your own GenAI powered automation using Large Language Models. Ingest Data from your own knowledge sources to produce more reliable and contextual LLM response. This template leverages custom connectors/API built on top of Langchain framework. \r\n\r\nFull Usage Guide >> https://youtu.be/X0FmJoT8Mms\r\nCustom Activity Backend Setup >> https://youtu.be/xCqTXhPVakY",
+  "main": "Sample-ChatMode.xaml",
+  "dependencies": {
+    "LangChainV2.Activities": "[2.0.1]",
+    "UiPath.ConnectorBuilder.IntegrationService.Activities": "[5.0.0]",
+    "UiPath.Excel.Activities": "[2.20.2]",
+    "UiPath.Form.Activities": "[23.4.5]",
+    "UiPath.FormActivityLibrary": "[2.0.5]",
+    "UiPath.Mail.Activities": "[1.20.0]",
+    "UiPath.Persistence.Activities": "[1.4.6]",
+    "UiPath.System.Runtime.Windows": "[23.4.3]",
+    "UiPath.Testing.Activities": "[23.4.1]",
+    "UiPath.UIAutomation.Activities.Runtime": "[23.4.6]",
+    "UiPath.WebAPI.Runtime": "[1.16.2]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "23.10.0.0",
+  "projectVersion": "1.0.3",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": true,
+    "requiresUserInteraction": false,
+    "supportsPersistence": false,
+    "workflowSerialization": "DataContract",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": true,
+    "saveToCloud": false
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Sample-ChatMode.xaml",
+      "uniqueId": "6439da22-63b3-4457-b8dc-27cc11e2f8f2",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "LLMFramework.xaml",
+      "uniqueId": "429ee719-49f2-4c6b-b4e2-8864cdb84915",
+      "input": [
+        {
+          "name": "in_Source",
+          "type": "System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Query",
+          "type": "System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_TransactionMode",
+          "type": "System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e",
+          "required": false,
+          "hasDefault": true
+        }
+      ],
+      "output": [
+        {
+          "name": "out_AIResponse",
+          "type": "System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e"
+        }
+      ]
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}

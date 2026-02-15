@@ -1,0 +1,42 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "LLMFramework.xaml",
+      "uniqueId": "429ee719-49f2-4c6b-b4e2-8864cdb84915",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_Source": {
+            "type": "string",
+            "description": "Transcript source for the vector db creation e.g. web page, documents, csv"
+          },
+          "in_Query": {
+            "type": "string",
+            "description": "User query or transaction input prompt"
+          },
+          "in_TransactionMode": {
+            "type": "boolean",
+            "description": "Transaction Mode -\u003E Transactional process e.g.  using queues\nChat Mode (in_TransactionMode=False) -\u003E Conversational"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_AIResponse": {
+            "type": "string",
+            "description": "Response from LLM agent or chain"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "Sample-ChatMode.xaml",
+      "uniqueId": "6439da22-63b3-4457-b8dc-27cc11e2f8f2",
+      "type": "process"
+    }
+  ]
+}

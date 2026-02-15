@@ -1,0 +1,40 @@
+Seq,Source,Question,AI Response
+1,C:\Temp\DU_Queue-items.csv,what are the unique queue items,"The unique queue items are as follows:
+
+1. Queue item with Key: 1c29b8df-0cc1-4ed8-96ff-23c378187350, Status: New, Reference: N-156102_Quaker Houghton.pdf
+
+2. Queue item with Key: 27ecae51-b816-4203-8dfd-08512ab5ee07, Status: Successful, Reference: CUsersSKumarDocumentsUiPathSalesOrder_DispatcherDataInputQuaker Houghton sb 117.pdf
+
+3. Queue item with Key: 2cd604d0-cf23-4315-a74b-4d8b8446b577, Status: In Progress, Reference: N-156102_Quaker Houghton.pdf
+
+4. Queue item with Key: 657fed02-6ba7-4278-bbb5-23c320add62b, Status: Abandoned, Reference: PO#8218 - Kerry Select.Pdf
+
+5. Queue item with Key: e3e1bcbb-a312-4ba9-b475-29db16b9d920, Status: Successful, Reference: Kerry Slect 4601.PDF
+
+6. Queue item with Key: a457b750-f9db-49b3-bfcb-42c96b05d3dc, Status: Abandoned, Reference: KerrySelect Vendor Information.pdf
+
+7. Queue item with Key: 9a6bc62f-8a31-4dee-b522-42c1fee773b4, Status: Abandoned, Reference: Kerry Select PO.pdf
+
+8. Queue item with Key: b1079cd2-5f41-416d-abd0-7f7aa8fa32dd, Status: Abandoned, Reference: KERRY INGREDIENTS EMAIL ORDER 12-09-2022.pdf
+
+9. Queue item with Key: 3d857e0c-e5f7-45ca-84e9-9c0288a37db0, Status: Abandoned, Reference: AFF-FLAVOR Booking Order 104166.05  KERRY SELECT MANGO  FLAVOR WONF 105083 (3).pdf
+
+Please note that the uniqueness of the queue items is determined by their keys."
+2,,enumerate the top 3 items that took longest to complete,"Based on the provided text, the top 3 items that took the longest to complete are:
+
+1. Queue item with Key: f34ec4f0-73d9-4313-9da7-8bddc70d03ed, Reference: Email111822140559 (1).pdf, Transaction Execution Time: 1403 minutes, Started: 1/2/2023 21:54, Ended: 1/2/2023 22:18
+
+2. Queue item with Key: 4454725b-283a-4378-b450-a2ce2cc9931e, Reference: Email112922093924.pdf, Transaction Execution Time: 1227 minutes, Started: 1/2/2023 21:56, Ended: 1/2/2023 22:17
+
+3. Queue item with Key: c7b640d5-79b2-4b75-8433-a779ba378fa8, Reference: Email111822140559.pdf, Transaction Execution Time: 1363 minutes, Started: 1/2/2023 21:55, Ended: 1/2/2023 22:18
+
+Please note that the transaction execution time is given in minutes."
+3,,what's my last question,"Your last question was: ""enumerate the top 3 items that took longest to complete""."
+4,C:\Temp\Appointment_Receipt_3287545.pdf,summarize this appointment for me in 20 words,"This is an ID/DL renewal appointment at ADOT, Phoenix, AZ on Friday, March 24, 2023, at 4:00 PM, confirmation #3287545."
+5,,confirmation number?,The confirmation number for the appointment is 3287545.
+6,https://www.youtube.com/watch?v=cIRzwSXB4Rc,how to use llama2 with langchain as a beginner. Provide 3 key pointers,"1. Understand the Basics: As a beginner, it's important to first understand the basics of LLaMA-2 and LangChain. LLaMA-2 is a language model developed by Meta AI, and LangChain is a tool that allows you to use this model for various tasks. Familiarize yourself with the documentation and tutorials available for both.
+
+2. Set Up the Environment: To use LLaMA-2 with LangChain, you need to set up the environment correctly. This includes importing the necessary libraries, setting up the hugging face pipeline, and loading the LLaMA-2 model. You will also need to input your hugging face token for authorization.
+
+3. Customize Prompts: The key to using LLaMA-2 effectively with LangChain is to customize the prompts according to your needs. You can play around with the system templates and instructions to get the desired output. Remember to format the prompts in the way LLaMA-2 expects them."
+7,,summarize this whole conversation,"The conversation began with the AI listing unique queue items, each identified by a unique key, status, and reference. The user then asked for the top three items that took the longest to complete, to which the AI provided a detailed response, including the keys, references, transaction execution times, and start and end times of the tasks. The user then asked the AI to recall the last question they asked, which the AI accurately did. Following this, the user requested a 20-word summary of an appointment, which the AI provided, along with the confirmation number when asked. Finally, the user asked for three key pointers on how to use LLaMA-2 with LangChain as a beginner. The AI provided a detailed response, emphasizing understanding the basics, setting up the environment, and customizing prompts."

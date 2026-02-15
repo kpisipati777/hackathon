@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "resources": [
+    {
+      "resource": "Connection",
+      "metadata": {
+        "ConnectionId": {
+          "defaultValue": "caa01d2b-6009-44bb-a691-450ec6c7c890",
+          "isExpression": false,
+          "displayName": "Connection"
+        },
+        "UseConnectionService": {
+          "defaultValue": "True",
+          "isExpression": false,
+          "displayName": "Use Integration Service",
+          "description": "Uses the Integration Service to authenticate to the service."
+        },
+        "Connector": {
+          "defaultValue": "uipath-microsoft-outlook365",
+          "isExpression": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "exportedBy": null,
+  "bundleHash": null,
+  "version": "1.0.0.0",
+  "jitAssemblyCompilerCommands": [
+    {
+      "providerName": "CustomEntities",
+      "bundleOptions": {
+        "hash": "FKxCW8wN/cAvliI1tvkc/GsXw6Rq0s2ZeWLRWleOfiOR5l/qHcuiqqujfYDRBh6lFP3+y2Uz4XB79tF6dOIIuw==",
+        "bundleName": "Ca9cf13833a1d4a7ea81f40eb88cb2216_api__vectordb",
+        "entitiesBundle": {
+          "Types": {
+            "api__vectordb": {
+              "name": "api__vectordb",
+              "properties": [
+                {
+                  "name": "args_index_name",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "doc_count",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "args_ns",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "args_env",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "doc_contents___",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                }
+              ],
+              "baseType": null
+            }
+          },
+          "version": 1
+        }
+      },
+      "entityAssemblyKey": {
+        "name": "UiPath.ConnectorBuilder.IntegrationService.Activities.SWEntities.Ca9cf13833a1d4a7ea81f40eb88cb2216_api__vectordb",
+        "hash": "Rkt4Q1c4d04vY0F2bGlJMXR2a2MvR3NYdzZScTBzMlplV0xSV2xlT2ZpT1I1bC9xSGN1aXFxdWpmWURSQmg2bEZQMyt5MlV6NFhCNzl0RjZkT0lJdXc9PQ",
+        "assemblyName": "Ca9cf13833a1d4a7ea81.sev2oPeosG1MwQAg2ZWZie2"
+      }
+    }
+  ]
+}

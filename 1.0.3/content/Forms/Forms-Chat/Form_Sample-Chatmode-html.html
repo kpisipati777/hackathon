@@ -1,0 +1,493 @@
+﻿<!-- form
+{
+  "Metadata": {
+    "Id": "5fa1791b-00a4-46b0-b49d-660f40a53635",
+    "Kind": "Html"
+  }
+}
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Application</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Added Font Awesome for the 'x' icon -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: row;
+      margin-top: 35px;
+      margin-bottom: 35px;
+    }
+    
+    .column {
+      flex: 1;
+      padding: 20px;
+    }
+    
+    .chat-container {
+      width: 100%; /* Set the width to 100% */
+      height: 500px;
+      overflow-y: scroll;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #ffffff;
+      position: relative;
+    }
+    
+    .message {
+      margin-bottom: 10px;
+      background-color: #d1eaf5;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .message .sender {
+      font-weight: bold;
+    }
+    
+    .message .content {
+      margin-top: 5px;
+    }
+    
+    .🫵-message {
+      background-color: #d1eaf5;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .🤖-message {
+      background-color: #e8e8e8;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    h2 {
+      margin-bottom: 30px;
+    }
+    
+    #send-button {
+      margin-left: 10px;
+      padding: 5px 10px;
+    }
+
+    #send-icon {
+      margin-right: 5px;
+    }
+
+    .close-chat-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: red;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      cursor: default;
+    }
+    
+    .close-chat-button img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .source-type-container {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .source-type-container > label {
+      margin-bottom: 5px;
+    }
+    
+    .source-type-container > select {
+      margin-bottom: 10px;
+    }
+    
+    .file-picker {
+      margin-bottom: 10px;
+    }
+
+    .url-field {
+      margin-bottom: 10px;
+    }
+
+    .input-container {
+      margin-top: 10px;
+    }
+
+    ::placeholder {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="column col-md-5">
+      <center><h2>Conversation Mode</h2></center>
+      <div>
+        <input type="radio" id="chat-mode" name="mode" value="chat-mode" checked>
+        <label for="chat-mode">Chat with your data</label>
+      </div>
+      <div>
+        <input type="radio" id="research-mode" name="mode" value="research-mode">
+        <label for="research-mode">Research Agent</label>
+      </div>
+      <div id="research-mode-components">
+        <span>👨🏻‍💼 An LLM agent that has access to <b>search 🔎 and web scraping 🌐 tools</b>, to help you do <b>high quality research 🔬 autonomously</b> without any hallucination.</span>
+        <span><br><br>Input your research objective or query on the input text area.</span>
+      </div>
+      <div id="chat-mode-components">
+        <span>🗣️ Chat with large language models using your <b>own data sources 📒📃🗃️🎞️ as a context</b>.</span>
+        <span><br><br><b>1--</b> Choose type of source then select the specific source from file system (if documents) or provide the URL for the source. After source selection, click 'Create Vector From Source'.</span>
+        <div class="source-type-container">
+          <label for="source-type">Source Type:</label>
+          <select id="source-type" class="form-control">
+            <option value="url">🌐 Web Page</option>
+            <option value="yt">🎞️ Youtube Videos</option>
+            <option value="docx" selected>🗃️ Word Document</option>
+            <option value="pdf" selected>🗃️ PDF File</option>
+            <option value="csv" selected>🗃️ CSV File</option>
+          </select>
+        </div>
+        <input type="file" id="file-picker" class="form-control file-picker" style="display: none;">
+        <input type="text" id="url-field" class="form-control url-field" style="display: none;" placeholder="URL to a web page or YT Video">
+        <button id="create-vector-button" class="btn btn-primary mt-2" onclick="createVectorClicked()" disabled><i class="fas fa-cogs"></i> Create Vector From Source</button>
+        <br><br>
+        <label for="vector-file-path">Current Vector Source:</label>
+        <input type="text" id="vector-file-path" class="form-control mt-2" placeholder="Valid Path to the Vector Source" disabled>
+        <span><br><b>2--</b> Start chatting with your source using the input text area.</span>
+      </div>
+    </div>
+    <div class="column col-md-7">
+      <div id="chat-container" class="chat-container">
+        <!-- Chat messages will be dynamically generated here -->
+      </div>
+      <div class="d-flex align-items-center input-container">
+        <textarea id="message-input" class="form-control" rows="3" disabled></textarea>
+        <button id="send-button" class="btn btn-primary" onclick="sendClicked()" disabled>
+          <i id="send-icon" class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+    <button id="close close-chat-button" onclick="closeClicked()" class="close-chat-button" aria-label="Close">
+      <i class="fas fa-times"></i> Close
+    </button>
+  </div>
+  
+  <!-- Bootstrap JS (place it at the end of the body for faster page loading) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/highlight.min.js"></script> <!-- Include highlight.js -->
+  <script>hljs.initHighlightingOnLoad();</script> <!-- Initialize highlight.js -->
+
+  <!-- jQuery & UiPath API -->
+  <script>
+    const sourceTypeDropdown = document.getElementById('source-type');
+    const filePicker = document.getElementById('file-picker');
+    const urlField = document.getElementById('url-field');
+    const chatContainer = document.getElementById('chat-container');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const vectorFilePathField = document.getElementById('vector-file-path');
+    const createVectorButton = document.getElementById('create-vector-button');
+
+    const chatModeRadioButton = document.getElementById("chat-mode");
+    const researchModeRadioButton = document.getElementById("research-mode");
+    const chatModeComponent = document.getElementById("chat-mode-components");
+    const researchModeComponent = document.getElementById("research-mode-components");
+
+    document.addEventListener('DOMContentLoaded', () => {     
+      // Function to show the appropriate container based on the selected option
+      function showSelectedContainer() {
+        const selectedOption = sourceTypeDropdown.value;
+        
+        // Show/hide file picker and URL field based on selection
+        filePicker.style.display = selectedOption === 'csv' || selectedOption === 'docx' || selectedOption === 'pdf' ? 'block' : 'none';
+        urlField.style.display = selectedOption === 'url' || selectedOption === 'yt' ? 'block' : 'none';
+
+        // Accept file types based on selection
+        filePicker.accept = selectedOption === 'csv' ? '.csv' : selectedOption === 'docx' ? '.doc,.docx' : selectedOption === 'pdf' ? '.pdf' : '';
+        
+        // Set focus on the message input field
+        messageInput.focus();
+      }
+      
+      // Event listener for source type dropdown change
+      sourceTypeDropdown.addEventListener('change', () => {
+        showSelectedContainer();
+      });
+
+      // Show the default container on page load
+      showSelectedContainer();
+      
+      // Event listener for send button click
+      sendButton.addEventListener('click', () => {
+        message = convertToNewLineSpaces(messageInput.value);
+        sendMessage(messageInput.value);
+      });
+    
+      // Event listener for Enter key press in message input
+      messageInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+          event.preventDefault(); // Prevent the default behavior of Enter key
+
+          // Get the input value and convert new lines
+          let message = messageInput.value;
+          message = convertToNewLineSpaces(message);
+
+          sendMessage(message);
+          sendClicked();
+        }
+      });
+
+      // Function to send a message
+      function sendMessage(message) {
+        //const message = messageInput.value;
+        if (message.trim() !== '') {
+          appendMessage('🫵', message);
+          messageInput.value = '';
+
+          // Simulate AI response after a delay
+          /*
+          setTimeout(() => {
+            const aiResponse = getAIResponse(message);
+            appendMessage('🤖', aiResponse);
+          }, 500); // Delay of 500 milliseconds
+          */
+        }
+      }
+
+      // Function to convert new lines to new line spaces
+      function convertToNewLineSpaces(input) {
+        const output = input.replace(/\n/g, '&nbsp;<br>');
+        return output;
+      }
+
+      // Get AI response based on the message
+      function getAIResponse(message) {
+        // Simulate AI response based on the received message
+        // You can implement your own logic here to generate AI response
+        return message;
+      }
+
+      // Event listener for vector file path field input
+      vectorFilePathField.addEventListener('input', () => {
+        const vectorFilePath = vectorFilePathField.value.trim();
+        const isVectorFileSet = vectorFilePath !== '';
+        //const isValidFolder = validateFolder(vectorFilePath);
+        messageInput.disabled = !isVectorFileSet //|| !isValidFolder;
+        sendButton.disabled = !isVectorFileSet //|| !isValidFolder;
+        vectorFilePathField.classList.toggle('is-invalid', !isVectorFileSet)//|| !isValidFolder);
+      });
+
+      // Event listener for file picker change
+      filePicker.addEventListener('change', () => {
+        createVectorButton.disabled = filePicker.files.length === 0;
+      });
+
+      // Event listener for URL field input
+      urlField.addEventListener('input', () => {
+        createVectorButton.disabled = urlField.value.trim() === '';
+      });
+
+      // Event listener for vector file path field input change
+      vectorFilePathField.addEventListener('change', () => {
+        vectorChanged();
+      });
+
+      // SECTION FOR CHAT MODE/RESEARCH MODE TOGGLE
+      // Add event listeners to radio buttons
+      chatModeRadioButton.addEventListener('change', () => {
+        toggleContainerVisibility();
+        conversationTypeChanged();
+      });
+      researchModeRadioButton.addEventListener('change', () => {
+        toggleContainerVisibility();
+        conversationTypeChanged();
+      });
+      
+      // Function to toggle the visibility of the container
+      function toggleContainerVisibility() {
+        if (researchModeRadioButton.checked) {
+          chatModeComponent.style.display = "none"; // Hide the chat mode container
+          researchModeComponent.style.display = "block"; // Show the research mode container
+          messageInput.disabled = false;
+          messageInput.value = 'I have an upcoming RPA presentation for LinkedIn. What is this company and what are some RPA use cases relevant to them?';
+          sendButton.disabled = false;
+        } else if (chatModeRadioButton.checked) {
+          chatModeComponent.style.display = "block"; // Show the chat mode container
+          researchModeComponent.style.display = "none"; // Hide the research mode container
+          const vectorFilePath = vectorFilePathField.value.trim();
+          const isVectorFileSet = vectorFilePath !== '';
+          //const isValidFolder = validateFolder(vectorFilePath);
+          messageInput.disabled = !isVectorFileSet //|| !isValidFolder;
+          sendButton.disabled = !isVectorFileSet //|| !isValidFolder;
+		  messageInput.value = '';
+        }
+      }
+
+      // Initial visibility based on the default checked radio button
+      toggleContainerVisibility();
+    });
+
+    // Append message to the chat container
+    function appendMessage(sender, message) {
+      const messageContainer = document.createElement('div');
+      messageContainer.classList.add('message-container');
+      
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.classList.add(sender + '-message');
+      var markedMessage = marked.parse(message);
+      messageElement.innerHTML = `<span class="sender">[${sender}]<br> </span><span class="content">${markedMessage}</span>`;
+      
+      messageContainer.appendChild(messageElement);
+      chatContainer.appendChild(messageContainer);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // Helper Get the content of the last sender message
+    function getLastMessageContentFrom(sender) {
+      const messages = document.getElementsByClassName('message');
+      for (let i = messages.length - 1; i >= 0; i--) {
+        const message = messages[i];
+        if (message.classList.contains(sender+'-message')) {
+          // Remove sender from the message content
+          const messageContent = message.textContent.replace(/\[[^\]]+\]/g, '');
+          return messageContent;
+        }
+      }
+      return '';
+    }
+
+    // Remove the last message-container
+    function removeLastMessageContainer() {
+      const messageContainers = document.getElementsByClassName('message-container');
+      if (messageContainers.length > 0) {
+        const lastMessageContainer = messageContainers[messageContainers.length - 1];
+        chatContainer.removeChild(lastMessageContainer);
+      }
+    }
+
+    // Get random animation url
+    function getRandomAnimation() {
+      const stringValues = ["https://ardas-it.com/uploads/images/blogs/giph.gif", 
+                            "https://4brain.ru/blog/wp-content/uploads/2020/11/lllwork-mem.gif",
+                            "https://3.bp.blogspot.com/-b_ZCZTZvScM/VV516MMUb4I/AAAAAAAAIUI/Gb2-LSHfA0o/s1600/uwhgGVt.gif"];
+      const randomIndex = Math.floor(Math.random() * stringValues.length);
+      return stringValues[randomIndex];
+    }
+
+    // UiPath API
+    var uiPathApi = {
+      // Called by 'Get Form Values'
+      getValue: function (elementId) {
+        // Check if elementId is for getting sources
+        if (elementId === 'file-picker') {
+          // Get the full path to the selected file in file picker
+          const selectedFile = filePicker.files[0];          
+          const url = urlField.value.trim();
+          const selectedOption = sourceTypeDropdown.value;
+          if (selectedFile && !(selectedOption === 'url' || selectedOption === 'yt')) {
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(selectedFile);
+            downloadLink.download = selectedFile.name;
+            // Trigger the download
+            downloadLink.click(); 
+            // Revoke the object URL after some time
+            URL.revokeObjectURL(downloadLink.href);
+            // This will only get the file name of the file and make sure the file is in the downloads folder
+            // This assumes that the browser auto downloads to user's default download folder
+            return selectedFile.name+'>>>type>>>'+selectedOption;
+          } else if (url !== '') {
+            // URL is provided in the URL field
+            return url+'>>>type>>>'+selectedOption;
+          } else {
+            // No file or URL is provided
+            return null;
+          }
+        }
+        else if (elementId === 'vector-file-path') {
+          return vectorFilePathField.value.trim();
+        }
+        else if (elementId === 'research-mode')
+          return researchModeRadioButton.checked;
+        else
+        return getLastMessageContentFrom("🫵");
+      },
+      // Called by 'Set Form Values'
+      setValue: function (elementId, value) {
+        // Remove animation from last message container
+        removeLastMessageContainer();
+
+        if (elementId === 'vector-file-path') {
+          vectorFilePathField.value = value;
+          vectorFilePathField.dispatchEvent(new Event('input'));
+          appendMessage('🤖', "<b>Pushed to vector store. Current context: </b>" + value);
+        }
+        else
+          appendMessage('🤖', value);
+        // Enable create vector store button and chat input
+        createVectorButton.disabled = false;
+        messageInput.disabled = false;
+        chatModeRadioButton.disabled = false;
+        researchModeRadioButton.disabled = false;    
+      },
+      // Call this to trigger a "Form Message" event
+      // This function is set by the forms engine after the page loads,
+      // but declaring it here as empty helps with code autocompletion
+      sendMessage: function (id, value) { },
+    }
+
+    // Call this to close the form
+    function closeClicked() {
+      uiPathApi.sendMessage("Pressed Close");
+    }
+
+    // Call this to trigger 'onPressSend' event workflow in UiPath
+    function sendClicked() {
+        uiPathApi.sendMessage("Pressed Send");
+        // Disable chat input
+        messageInput.disabled = true;  
+        createVectorButton.disabled = true;
+        chatModeRadioButton.disabled = true;
+        researchModeRadioButton.disabled = true;    
+        // Add typing animation
+        animation = getRandomAnimation();
+        setTimeout(() => {
+          appendMessage('🤖', "Crafting response...</br><img src='"+animation+"' height=150 />");
+        }, 500);
+    }
+
+    // Call this to trigger 'onPressCreateVector' event workflow in UiPath
+    function createVectorClicked() {
+        uiPathApi.sendMessage("Pressed Create Vector");
+        // Disable create vector store button
+        createVectorButton.disabled = true; 
+        messageInput.disabled = true;
+        // Add create vector animation
+        appendMessage('🤖', "Generating embeddings and pushing to vector store...<img src='https://cdn.dribbble.com/users/24711/screenshots/3886002/falcon_persistent_connection_2x.gif' height=150 />");
+    }
+
+    // Call this to trigger 'onVectorChange' event workflow in UiPath
+    function vectorChanged() {
+        uiPathApi.sendMessage("Vector Changed");
+    }
+
+    // Call this to trigger 'onConversationTypeChange' event workflow in UiPath
+    function conversationTypeChanged() {
+        uiPathApi.sendMessage("Conversation Type Changed");
+    }
+  </script>
+</body>
+</html>
+
