@@ -85,21 +85,21 @@
       <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Sample_ChatMode" sap:VirtualizedContainerService.HintSize="376,1039" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sample_ChatMode" sap:VirtualizedContainerService.HintSize="1281,515" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment DisplayName="Process Overview" sap:VirtualizedContainerService.HintSize="334,437" sap2010:WorkflowViewState.IdRef="Comment_1" Text="THIS CAN BE RUN/DEPLOYED AS IS, OR CUSTOMIZED. MARK THIS AS MAIN WHEN DEPLOYING (ATTENDED PROCESS). THIS REQUIRES ROBOT VERSION &gt;= 23.4&#xA;&#xA;*Chat with your own data*&#xA;Leverage context-aware LLM Framework with memory to ingest data source and answer any questions (in a conversational manner) related or unrelated to the ingested source.&#xA;    -&gt; _Chat Interface_ (Custom Form) &#xA;    -&gt; *LLM Framework* **[Ingest Knowledge (Files, Web Pages, etc) &gt; LLM Interaction (Ask With Context) &gt; Respond with Context &gt; Retain Memory/Context of Conversation &gt; Repeat]**&#xA;&#xA;Related Artifacts (Forms, Workflows, Triggers)&#xA;- MAIN Framework -&gt; Framework\_LLMFramework.xaml_&#xA;- Framework Folder -&gt; _Framework\*_&#xA;- Forms &amp; Triggers -&gt; _Forms\Forms-Chat\*_" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\REFramework\InitAllSettings.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\REFramework\InitAllSettings.xaml">
+    <ui:Comment DisplayName="Process Overview ChatMode" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Comment_1" Text="THIS CAN BE RUN/DEPLOYED AS IS, OR CUSTOMIZED. MARK THIS AS MAIN WHEN DEPLOYING (ATTENDED PROCESS). THIS REQUIRES ROBOT VERSION &gt;= 23.4&#xA;&#xA;*Chat with your own data*&#xA;Leverage context-aware LLM Framework with memory to ingest data source and answer any questions (in a conversational manner) related or unrelated to the ingested source.&#xA;    -&gt; _Chat Interface_ (Custom Form) &#xA;    -&gt; *LLM Framework* **[Ingest Knowledge (Files, Web Pages, etc) &gt; LLM Interaction (Ask With Context) &gt; Respond with Context &gt; Retain Memory/Context of Conversation &gt; Repeat]**&#xA;&#xA;Related Artifacts (Forms, Workflows, Triggers)&#xA;- MAIN Framework -&gt; Framework\_LLMFramework.xaml_&#xA;- Framework Folder -&gt; _Framework\*_&#xA;- Forms &amp; Triggers -&gt; _Forms\Forms-Chat\*_" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\REFramework\InitAllSettings.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\REFramework\InitAllSettings.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings","Constants"}]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[Global_Config]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ufa:ShowFormActivity InstanceName="{x:Null}" Left="{x:Null}" ShowInTaskbar="{x:Null}" Title="{x:Null}" Top="{x:Null}" TopMost="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="5fa1791b-00a4-46b0-b49d-660f40a53635" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="ShowFormActivity_3" IsAsync="True">
+    <ufa:ShowFormActivity InstanceName="{x:Null}" Left="{x:Null}" ShowInTaskbar="{x:Null}" Title="{x:Null}" Top="{x:Null}" TopMost="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="5fa1791b-00a4-46b0-b49d-660f40a53635" sap:VirtualizedContainerService.HintSize="450,227" sap2010:WorkflowViewState.IdRef="ShowFormActivity_3" IsAsync="True">
       <ufa:ShowFormActivity.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ufa:ShowFormActivity.Arguments>
