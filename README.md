@@ -162,18 +162,57 @@ Sophiie senior engineers and CTO. Judging will take place over a 2-week period f
 
 | Field | Your Answer |
 |-------|-------------|
-| **Name** | |
-| **University / Employer** | |
+| **Name** | Phanikiran Pisipati|
+| **University / Employer** | NSW Department of Customer Service|
 
 ### Project
 
 | Field | Your Answer |
 |-------|-------------|
-| **Project Name** | |
-| **One-Line Description** | |
+| **Project Name** | Docubot (Chatbot)|
+| **One-Line Description** | The proposed UiPath chatbot will be an AI-powered system that will be trained on a 
+massive dataset of UiPath documentation and forum posts. It will be able to: 
+• Answer questions about UiPath: The chatbot will be able to answer a wide 
+range of questions about UiPath, including questions about the platform, the 
+various components of the platform, and how to use the platform to automate 
+various tasks. 
+• Generate code snippets: The chatbot will be able to generate code snippets in 
+UiPath's programming language, UiPath Robot Language (UIR). This will 
+make it easier for users to automate tasks without having to write code from 
+scratch. 
+• Provide step-by-step instructions: The chatbot will be able to provide step-by- 
+step instructions on how to automate various tasks using UiPath. This will 
+make it easier for users to learn how to use UiPath, even if they have no prior 
+experience with automation. 
+The chatbot will be integrated with the UiPath platform so that users can easily 
+access it from within the UiPath environment. It will also be available as a standalone 
+application, so that users can access it from anywhere. 
+Here is a detailed description of how the chatbot will work: 
+1. The user will ask a question or give a command to the chatbot. 
+2. The chatbot will use Retravel Augmentation Generation (RAG) from Pinecone 
+vector DB to retrieve top K chunks based on cosine similarity measure 
+between the embeddings present in the DB and the user requested question. 
+3. Vector DB search result, the context and prompt engineering will be used by 
+the LLM to generate a response to the user's request. The response may be a 
+simple answer, a code snippet, or step-by-step instructions. 
+The chatbot will be trained using a variety technique, including: 
+• Reinforcement learning with human feedback (RLHF): The chatbot will be 
+trained on a simulated environment where it can interact with UiPath and 
+receive feedback on its performance. This feedback will help the chatbot to 
+learn how to generate better responses to user requests. 
+The chatbot will be deployed on a cloud platform so that it can be accessed by users 
+from anywhere. The chatbot will also be designed to be scalable so that it can 
+handle a large number of concurrent users. 
+We believe that the proposed UiPath chatbot has the potential to be a valuable tool 
+for UiPath users of all levels of experience. It will help users to automate their tasks 
+more quickly and efficiently, and it will make UiPath more accessible to a wider 
+range of users.|
 | **Demo Video Link** | |
-| **Tech Stack** | |
-| **AI Provider(s) Used** | |
+| **Tech Stack** | UiPath Forms,• GPT-4: Large Language Model (LLM) •  RAG: To answer questions about the documentation using the vector DB 
+• Langchain: A framework to interact with LLM 
+• Pinecone vector DB: To store and retrieve the numerical vector embeddings.
+| **AI Provider(s) Used** | GPT-4: Large Language Model (LLM) •  RAG: To answer questions about the documentation using the vector DB 
+• Langchain: A framework to interact with LLM |
 
 ### About Your Project
 
